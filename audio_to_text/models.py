@@ -8,4 +8,15 @@ class ExtraUser(AbstractUser):
 
 
 class AudioFileModel(models.Model):
-    audio_file = models.FileField
+    """AudioFile model. Keeps audio files and description"""
+    audio_file = models.FileField(upload_to="file_storage/", verbose_name='Audio files', )
+    description = models.CharField(max_length=50, verbose_name="Audio File description")
+
+    def __str__(self):
+        return self.description if len(str(self.description)) < 20 \
+            else self.description[:20] + "..."
+
+    class Meta:
+        verbose_name = "Audio File"
+        verbose_name_plural = "Audio Files"
+
