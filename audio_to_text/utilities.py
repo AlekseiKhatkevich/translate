@@ -3,13 +3,16 @@ import pocketsphinx
 import os
 from translate.settings import MEDIA_ROOT
 from googletrans import Translator
+from pydub import AudioSegment
+import glob
 
 
 def get_text_from_audio(filename, duration):
     """Function extracts text from audio"""
     r = sr.Recognizer()
-    file = sr.AudioFile((os.path.join(MEDIA_ROOT, "file_storage", filename)))
+    file = sr.AudioFile(os.path.join(MEDIA_ROOT, "file_storage", filename))
     with file as source:
+        r.adjust_for_ambient_noise(source, duration=0.5)
         audio = r.record(source, duration=duration)
     try:
         #result = r.recognize_google(audio)
@@ -26,8 +29,9 @@ def translate_lng_lo_lng(text, dest):
     return translation_result
 
 
-if __name__ == "__main__":
 
-    a = translate_lng_lo_lng("this episode is brought you by square square is more than a little white credit card reader it's a run your whole Business System including point-of-sale payroll invoices access to business loans and more it's all built to work together learn House Square can help run and grow your business at square.com start up with another episode of without fail was up for one of the most anticipated Awards of the evening best new restaurant" , dest="ru")
 
-    print(a)
+
+
+
+
