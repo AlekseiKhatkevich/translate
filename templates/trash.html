@@ -1,0 +1,69 @@
+<!--   -->
+<!DOCTYPE html>
+<!-- templates/audio_to_text/index.html  -->
+{% extends "audio_to_text/base.html" %}
+{% load bootstrap4 %}
+{% bootstrap_jquery "full" %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_css %}
+
+
+{% block title %}
+index page
+{% endblock title %}
+
+
+{%  block content %}
+<div class="container">
+
+<div class="row mt-3 mb-4" >
+
+    <div class="col text-center">
+    <h4>Select audio file to get text</h4>
+        </div>
+</div>
+
+
+
+    {% for object in object_list %}
+        <div class="row mt-3" >
+
+<div class="col-3">
+    <p> File description --  {{ object.description }} </p>
+</div>
+
+
+
+
+ <div class="col-3">
+      <form action="{{ request.get_full_path_info }}" method="post" name="form1" id="1">
+          {% csrf_token %}
+
+<select class="custom-select" name="languages">
+  <option selected>Select language</option>
+  <option value="es,{{ object.pk }}">Spanish</option>
+  <option value="de,{{ object.pk }}">German</option>
+  <option value="ru,{{ object.pk }}">Russian</option>
+</select>
+ </div>
+
+
+
+
+
+        <div class="col-3">
+        <button type="submit" class="btn btn-primary">Translate</button>
+        </div>
+
+        </form>
+
+  </div> {# row #}
+
+    {% endfor %}
+
+
+
+
+</div> {# container #}
+
+{% endblock content %}

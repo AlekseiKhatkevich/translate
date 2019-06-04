@@ -9,6 +9,10 @@ verify_ssl = true
 django = "*"
 django-bootstrap4 = "*"
 django-debug-toolbar = "*"
+six = "*"
+speechrecognition = "*"
+pocketsphinx = {path = "./pocketsphinx-0.1.15-cp37-cp37m-win32.whl"}
+googletrans = "*"
 
 [requires]
 python_version = "3.7"

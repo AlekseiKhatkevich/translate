@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import os
 
 
 class ExtraUser(AbstractUser):
@@ -15,6 +16,10 @@ class AudioFileModel(models.Model):
     def __str__(self):
         return self.description if len(str(self.description)) < 20 \
             else self.description[:20] + "..."
+
+    def filename(self):
+        """method returns file name"""
+        return os.path.basename(self.audio_file.name)
 
     class Meta:
         verbose_name = "Audio File"

@@ -137,3 +137,5 @@ MEDIA_URL = "/media/"
 
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
 if DEBUG: INTERNAL_IPS = "127.0.0.1"
+
+
