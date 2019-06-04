@@ -9,7 +9,7 @@ class ExtraUser(AbstractUser):
 
 
 class AudioFileModel(models.Model):
-    """AudioFile model. Keeps audio files and description"""
+    """AudioFile model. Holds audio files and description"""
     audio_file = models.FileField(upload_to="file_storage/", verbose_name='Audio files', )
     description = models.CharField(max_length=50, verbose_name="Audio File description")
 

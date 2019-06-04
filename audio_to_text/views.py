@@ -37,7 +37,10 @@ class ResultView(TemplateView):
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
         obj = AudioFileModel.objects.get(pk=self.kwargs.get("pk"))
-        text = get_text_from_audio(obj.filename(), duration=self.kwargs.get("duration"))
+
+        text = get_text_from_audio(obj.filename(), duration=
+        None if self.kwargs.get("duration") == 0 else self.kwargs.get("duration"))
+
         translated_text = translate_lng_lo_lng(text, dest=self.kwargs.get("language"))
         context["text"] = translated_text
         return context
